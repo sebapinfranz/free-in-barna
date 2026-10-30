@@ -17,6 +17,7 @@ In scope:
 - A TypeScript-based Hono app running on Node.
 - A minimal `tsx` development workflow.
 - A home page rendered at `/` with an HTML structure that includes a `FreeInBarna` heading and a short tagline.
+- A mobile-first base layout with responsive spacing and typography so the page reads well on smaller screens.
 - Verification that the app builds and serves correctly.
 
 Out of scope:
