@@ -4,15 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "tsx src/index.tsx",
+    "db:reset": "node scripts/reset-db.js --force",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
     "@hono/node-server": "2.1.5",
+    "better-sqlite3": "^13.0.3",
     "hono": "4.13.14"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "26.6.5",
     "tsx": "4.23.15",
     "typescript": "7.0.2",

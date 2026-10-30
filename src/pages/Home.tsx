@@ -10,6 +10,11 @@ export function HomePage() {
           Discover free museums, cultural events, and places to explore around
           Barcelona.
         </p>
+        <p>
+          <a href="/events" role="button">
+            Browse free events
+          </a>
+        </p>
       </section>
     </Layout>
   );

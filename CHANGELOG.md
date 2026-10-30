@@ -1,6 +1,9 @@
 # Changelog
 
 ## 2026-10-30
+- feat: add event discovery filters and richer event list/detail UX
+- feat: harden SQLite migrations, deduping, and local DB reset workflow
+- feat: add events catalog spec and seeded Barcelona events
 - feat: enhance mobile responsiveness and layout in Hello Hono phase
 - feat: add testing and validation scripts, update app structure
 - Merge Hello Hono phase

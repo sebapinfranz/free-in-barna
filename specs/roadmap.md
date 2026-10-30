@@ -6,13 +6,13 @@
 - Confirm TypeScript types work end-to-end
 - Verified with a working local app shell and successful TypeScript check
 
-## Phase 2 — Base Layout
+## Phase 2 — Base Layout (Complete)
 - Server-side JSX layout component (header, nav, main, footer)
 - Basic CSS (custom properties, reset, typography, responsive rules)
 - All routes render inside the shared layout
 - Layout is mobile-first and adapts cleanly to larger screens
 
-## Phase 3 — Events List
+## Phase 3 — Events List (In Progress)
 - SQLite database + first migration (`events` table)
 - Seed a handful of events happening in Barcelona for October (e.g.: Oktoberfest, 48hs Open House)
 - `/events` page listing all events
