@@ -23,6 +23,7 @@ describe("FreeInBarna app", () => {
     const css = await response.text();
     expect(css).toContain("--bg:");
     expect(css).toContain(".hero");
+    expect(css).toContain("@media");
   });
 
   it("returns a 404 for an unknown route", async () => {

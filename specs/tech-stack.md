@@ -59,6 +59,7 @@ Hono is chosen over Express or Fastify because it is:
 - Favor a straightforward, modern visual style that meets Steve's expectation for attractiveness
 - Keep the first release polished and easy to use without overbuilding infrastructure
 - Maintain predictable component structure so the app can grow from a catalog into richer museum and event experiences
+- Use a mobile-first, responsive CSS approach so the UI adapts cleanly across phones, tablets, and desktops
 
 ## MVP implementation direction
 
@@ -70,3 +71,4 @@ The first version should be a lean TypeScript application that focuses on:
 - museum-specific metadata such as free days and schedules
 - appointment requirement indicators
 - responsive browser support across modern devices
+- fluid spacing, wrapping layouts, and readable typography at smaller breakpoints

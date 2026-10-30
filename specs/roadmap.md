@@ -8,8 +8,9 @@
 
 ## Phase 2 — Base Layout
 - Server-side JSX layout component (header, nav, main, footer)
-- Basic CSS (custom properties, reset, typography)
+- Basic CSS (custom properties, reset, typography, responsive rules)
 - All routes render inside the shared layout
+- Layout is mobile-first and adapts cleanly to larger screens
 
 ## Phase 3 — Events List
 - SQLite database + first migration (`events` table)

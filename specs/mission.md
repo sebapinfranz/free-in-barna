@@ -25,7 +25,8 @@ FreeInBarna gives users a clean dashboard that surfaces free cultural options in
 2. Relevance: prioritize free cultural opportunities that matter locally.
 3. Ease of access: dashboard layouts and filters should reduce friction.
 4. Clarity: free days, schedules, and appointment rules should be explicit.
-5. Scope focus: stay centered on free cultural discovery rather than broad commerce features.
+5. Responsive design: the interface should work well on mobile, tablet, and desktop screens.
+6. Scope focus: stay centered on free cultural discovery rather than broad commerce features.
 
 ## MVP scope
 The initial release should focus on essentials:
@@ -34,3 +35,4 @@ The initial release should focus on essentials:
 - clear indicators for appointment requirements
 - a dashboard that makes information easy to scan
 - a polished browser experience that feels modern and dependable
+- responsive layouts that adapt gracefully across screen sizes
