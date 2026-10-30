@@ -12,14 +12,16 @@
 - All routes render inside the shared layout
 - Layout is mobile-first and adapts cleanly to larger screens
 
-## Phase 3 — Events List (In Progress)
+## Phase 3 — Events List (Complete)
 - SQLite database + first migration (`events` table)
 - Seed a handful of events happening in Barcelona for October (e.g.: Oktoberfest, 48hs Open House)
 - `/events` page listing all events
+- Verified with working route rendering and event data in the app
 
-## Phase 4 — Events Detail
+## Phase 4 — Events Detail (Complete)
 - `/events/:id` page showing a single event's profile
 - Name, date, current status, location, needs appointment, more info
+- Verified with working detail routing and seeded metadata display
 
 ## Phase 5 — Places Catalog
 - `places` table + seed data (e.g., "CaixaForum", "Pedralbes Monastery")

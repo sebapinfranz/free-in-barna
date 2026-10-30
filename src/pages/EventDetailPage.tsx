@@ -1,5 +1,5 @@
 import { Layout } from "../components/Layout";
-import type { EventRecord } from "../db";
+import type { EventRecord, RelatedPlaceRecord } from "../db";
 
 function formatDate(value: string) {
   return new Date(value).toLocaleDateString("en-GB", {
@@ -16,7 +16,13 @@ function formatTime(value: string) {
   });
 }
 
-export function EventDetailPage({ event }: { event: EventRecord }) {
+export function EventDetailPage({
+  event,
+  relatedPlaces,
+}: {
+  event: EventRecord;
+  relatedPlaces: RelatedPlaceRecord[];
+}) {
   return (
     <Layout>
       <article class="event-detail">
@@ -53,6 +59,20 @@ export function EventDetailPage({ event }: { event: EventRecord }) {
         </dl>
 
         <p>{event.description}</p>
+
+        {relatedPlaces.length > 0 ? (
+          <div>
+            <h2>Related places</h2>
+            <ul>
+              {relatedPlaces.map((place) => (
+                <li>
+                  <a href={`/places/${place.id}`}>{place.name}</a> — {place.location}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
         <p>
           <a href="/events">← Back to events</a>
         </p>
