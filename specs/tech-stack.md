@@ -30,11 +30,15 @@ Hono is chosen over Express or Fastify because it is:
 ## Testing
 
 - Vitest for fast, TypeScript-native unit and integration tests
+- Use `npm test` as the standard validation command for automated checks
+- Use `npm run test:watch` during development for quick feedback while iterating
+- Validation should cover behavior-level checks for routes, rendering, and core app logic
 
 ## Tooling
 
 - `tsx` for local development and TypeScript execution
-- `tsc` for production builds
+- `tsc` for production builds and strict type validation
+- `vitest` for automated validation and regression checks
 - `prettier` for formatting
 
 ## What We Are Not Using

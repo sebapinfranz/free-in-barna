@@ -10,9 +10,10 @@
 2. Add a single `GET /` route returning `"FreeInBarna is ready"`.
 3. Call `serve()` to bind the app to a port, defaulting to 3000.
 
-## Group 3 — Dev Script
-1. Add `"dev": "tsx src/index.ts"` (or `tsx watch`) to `package.json` scripts.
+## Group 3 — Dev and Validation Scripts
+1. Add `"dev": "tsx src/index.tsx"` (or `tsx watch`) to `package.json` scripts.
 2. Add `"typecheck": "tsc --noEmit"` to `package.json` scripts.
+3. Add `"test": "vitest run"` and `"test:watch": "vitest"` so validation is automated and repeatable.
 
 ## Group 4 — Home Page
 1. Create a Hono JSX component for the home page at `src/pages/Home.tsx`.
