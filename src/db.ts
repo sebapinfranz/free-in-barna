@@ -14,6 +14,31 @@ export type EventRecord = {
   requires_appointment: number;
 };
 
+export type PlaceRecord = {
+  id: number;
+  name: string;
+  summary: string;
+  description: string;
+  location: string;
+  free_days: string;
+  is_free: number;
+  requires_appointment: number;
+  more_info_url: string;
+};
+
+export type RelatedPlaceRecord = {
+  id: number;
+  name: string;
+  location: string;
+};
+
+export type RelatedEventRecord = {
+  id: number;
+  title: string;
+  summary: string;
+  starts_at: string;
+};
+
 const APP_ROOT = path.resolve(__dirname, "..");
 const DATABASE_PATH = path.join(APP_ROOT, "data", "free-in-barna.db");
 const MIGRATIONS_DIR = path.join(APP_ROOT, "db", "migrations");
@@ -102,4 +127,58 @@ export function getEventById(id: number): EventRecord | undefined {
     .get(id) as EventRecord | undefined;
 
   return event;
+}
+
+export function getAllPlaces(): PlaceRecord[] {
+  return getDatabase()
+    .prepare(
+      `
+      SELECT id, name, summary, description, location, free_days, is_free, requires_appointment, more_info_url
+      FROM places
+      ORDER BY name ASC, id ASC
+      `,
+    )
+    .all() as PlaceRecord[];
+}
+
+export function getPlaceById(id: number): PlaceRecord | undefined {
+  const place = getDatabase()
+    .prepare(
+      `
+      SELECT id, name, summary, description, location, free_days, is_free, requires_appointment, more_info_url
+      FROM places
+      WHERE id = ?
+      `,
+    )
+    .get(id) as PlaceRecord | undefined;
+
+  return place;
+}
+
+export function getRelatedPlacesByEventId(eventId: number): RelatedPlaceRecord[] {
+  return getDatabase()
+    .prepare(
+      `
+      SELECT p.id, p.name, p.location
+      FROM event_place_links epl
+      INNER JOIN places p ON p.id = epl.place_id
+      WHERE epl.event_id = ?
+      ORDER BY p.name ASC
+      `,
+    )
+    .all(eventId) as RelatedPlaceRecord[];
+}
+
+export function getRelatedEventsByPlaceId(placeId: number): RelatedEventRecord[] {
+  return getDatabase()
+    .prepare(
+      `
+      SELECT e.id, e.title, e.summary, e.starts_at
+      FROM event_place_links epl
+      INNER JOIN events e ON e.id = epl.event_id
+      WHERE epl.place_id = ?
+      ORDER BY e.starts_at ASC, e.id ASC
+      `,
+    )
+    .all(placeId) as RelatedEventRecord[];
 }

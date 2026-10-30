@@ -63,6 +63,63 @@ describe("FreeInBarna app", () => {
     expect(html).toContain("No appointment needed");
   });
 
+  it("renders the places list page with seeded Barcelona venues", async () => {
+    const response = await app.request("http://localhost/places");
+
+    expect(response.status).toBe(200);
+
+    const html = await response.text();
+    expect(html).toContain("Places to explore");
+    expect(html).toContain("CaixaForum Barcelona");
+    expect(html).toContain("Barcelona");
+  });
+
+  it("renders the place detail page with the requested venue metadata", async () => {
+    const response = await app.request("http://localhost/places/1");
+
+    expect(response.status).toBe(200);
+
+    const html = await response.text();
+    expect(html).toContain("CaixaForum Barcelona");
+    expect(html).toContain("When free");
+    expect(html).toContain("No appointment needed");
+  });
+
+  it("supports simple discovery filters on the places list", async () => {
+    const freeOnlyResponse = await app.request("http://localhost/places?free=1");
+    const bookingResponse = await app.request("http://localhost/places?booking=1");
+
+    expect(freeOnlyResponse.status).toBe(200);
+    expect(bookingResponse.status).toBe(200);
+
+    const freeHtml = await freeOnlyResponse.text();
+    const bookingHtml = await bookingResponse.text();
+
+    expect(freeHtml).toContain("Free only");
+    expect(bookingHtml).toContain("Requires booking");
+    expect(bookingHtml).toContain("Barcelona Museum of Contemporary Art");
+  });
+
+  it("shows related places on an event detail page", async () => {
+    const response = await app.request("http://localhost/events/2");
+
+    expect(response.status).toBe(200);
+
+    const html = await response.text();
+    expect(html).toContain("Related places");
+    expect(html).toContain("CaixaForum Barcelona");
+  });
+
+  it("shows related events on a place detail page", async () => {
+    const response = await app.request("http://localhost/places/1");
+
+    expect(response.status).toBe(200);
+
+    const html = await response.text();
+    expect(html).toContain("Related events");
+    expect(html).toContain("Museu de la Xocolata Free Entry");
+  });
+
   it("serves the CSS asset from the static directory", async () => {
     const response = await app.request("http://localhost/static/style.css");
 

@@ -69,8 +69,33 @@ body {
 
 .hero,
 .page-header,
-.event-detail {
+.event-detail,
+.home-section,
+.home-grid {
   padding: 2rem 1rem 1rem;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.home-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.5rem;
+}
+
+.home-card.compact {
+  max-width: none;
+  min-height: 100%;
+}
+
+.home-card h2 {
+  margin: 0.25rem 0 0.75rem;
 }
 
 .eyebrow {
@@ -247,7 +272,13 @@ body {
 
   .hero,
   .page-header,
-  .event-detail {
+  .event-detail,
+  .home-section,
+  .home-grid {
     padding-top: 1.5rem;
+  }
+
+  .home-grid {
+    grid-template-columns: 1fr;
   }
 }
