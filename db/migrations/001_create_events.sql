@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS events (
   summary TEXT NOT NULL,
   description TEXT NOT NULL,
   starts_at TEXT NOT NULL,
+  ends_at TEXT,
+  website_url TEXT,
   location TEXT NOT NULL,
   status TEXT NOT NULL DEFAULT 'Scheduled',
   is_free INTEGER NOT NULL DEFAULT 1,

@@ -2,9 +2,6 @@ export function Header() {
   return (
     <header class="site-header">
       <nav aria-label="Main navigation">
-        <a href="/" class="brand">
-          FreeInBarna
-        </a>
         <ul>
           <li>
             <a href="/">Home</a>

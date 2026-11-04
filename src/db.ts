@@ -8,10 +8,12 @@ export type EventRecord = {
   summary: string;
   description: string;
   starts_at: string;
+  ends_at: string | null;
   location: string;
   status: string;
   is_free: number;
   requires_appointment: number;
+  website_url: string | null;
 };
 
 export type PlaceRecord = {
@@ -107,7 +109,7 @@ export function getAllEvents(): EventRecord[] {
   return getDatabase()
     .prepare(
       `
-      SELECT id, title, summary, description, starts_at, location, status, is_free, requires_appointment
+      SELECT id, title, summary, description, starts_at, ends_at, location, status, is_free, requires_appointment, website_url
       FROM events
       ORDER BY starts_at ASC, id ASC
       `,
@@ -119,7 +121,7 @@ export function getEventById(id: number): EventRecord | undefined {
   const event = getDatabase()
     .prepare(
       `
-      SELECT id, title, summary, description, starts_at, location, status, is_free, requires_appointment
+      SELECT id, title, summary, description, starts_at, ends_at, location, status, is_free, requires_appointment, website_url
       FROM events
       WHERE id = ?
       `,

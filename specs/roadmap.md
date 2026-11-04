@@ -23,13 +23,19 @@
 - Name, date, current status, location, needs appointment, more info
 - Verified with working detail routing and seeded metadata display
 
-## Phase 5 — Places Catalog
+## Phase 5 — Places Catalog (Complete)
 - `places` table + seed data (e.g., "CaixaForum", "Pedralbes Monastery")
 - `/places` list page
 - Link events can also be linked to one or more places (for example, La Mercé is an event where you can go to CaixaForum for free)
 - Name, location, days when free, needs appointment, more info
+- Verified with working places routes, relationship links, and validation coverage
 
-## Phase 6 — Polish & Accessibility
+## Phase 6 — Real Data Migration
+- Replace seeded events and places with real data gathered from trusted sources
+- Add a consistent real-data import or maintenance workflow for cultural listings
+- Confirm the app continues to render trustworthy entries with accurate dates and locations
+
+## Phase 7 — Polish & Accessibility
 - Responsive layout for Steve's modern-browser requirement
 - Semantic HTML audit
 - Keyboard navigation and focus styles

@@ -3,6 +3,7 @@ import type { EventRecord } from "../db";
 
 function formatDate(value: string) {
   return new Date(value).toLocaleDateString("en-GB", {
+    weekday: "short",
     day: "numeric",
     month: "short",
     year: "numeric",

@@ -3,8 +3,9 @@ import type { EventRecord, RelatedPlaceRecord } from "../db";
 
 function formatDate(value: string) {
   return new Date(value).toLocaleDateString("en-GB", {
+    weekday: "short",
     day: "numeric",
-    month: "long",
+    month: "short",
     year: "numeric",
   });
 }
@@ -14,6 +15,38 @@ function formatTime(value: string) {
     hour: "2-digit",
     minute: "2-digit",
   });
+}
+
+function formatDateRange(start: string, end: string | null) {
+  const startDate = new Date(start);
+
+  if (!end) {
+    return formatDate(start);
+  }
+
+  const endDate = new Date(end);
+  const sameDay =
+    startDate.getFullYear() === endDate.getFullYear() &&
+    startDate.getMonth() === endDate.getMonth() &&
+    startDate.getDate() === endDate.getDate();
+
+  if (sameDay) {
+    return `${formatDate(start)} · ${formatTime(start)}-${formatTime(end)}`;
+  }
+
+  const startLabel = startDate.toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+  const endLabel = endDate.toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  return `${startLabel} – ${endLabel}`;
 }
 
 export function EventDetailPage({
@@ -41,7 +74,9 @@ export function EventDetailPage({
           <div>
             <dt>When</dt>
             <dd>
-              {formatDate(event.starts_at)} · {formatTime(event.starts_at)}
+              {event.ends_at
+                ? formatDateRange(event.starts_at, event.ends_at)
+                : `${formatDate(event.starts_at)} · ${formatTime(event.starts_at)}`}
             </dd>
           </div>
           <div>
@@ -57,6 +92,14 @@ export function EventDetailPage({
             <dd>{event.requires_appointment ? "Appointment required" : "No appointment needed"}</dd>
           </div>
         </dl>
+
+        {event.website_url ? (
+          <p>
+            <a href={event.website_url} target="_blank" rel="noreferrer">
+              Event website ↗
+            </a>
+          </p>
+        ) : null}
 
         <p>{event.description}</p>
 

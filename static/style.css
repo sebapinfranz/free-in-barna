@@ -28,8 +28,11 @@ body {
 .site-header,
 .site-footer,
 .site-main {
-  width: min(1100px, calc(100% - 2rem));
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .site-header {
@@ -38,10 +41,12 @@ body {
 
 .site-header nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 1rem;
+  margin-left: 12px;
+  margin-right: 12px;
   background: rgba(255, 255, 255, 0.76);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -51,6 +56,8 @@ body {
   color: var(--text);
   font-weight: 700;
   text-decoration: none;
+  margin-right: auto;
+  font-size: 1.2rem;
 }
 
 .site-header ul {
@@ -60,6 +67,7 @@ body {
   gap: 1rem;
   margin: 0;
   padding: 0;
+  order: -1;
 }
 
 .site-header a {
@@ -72,14 +80,25 @@ body {
 .event-detail,
 .home-section,
 .home-grid {
-  padding: 2rem 1rem 1rem;
+  padding: 1.25rem 1rem 0.75rem;
+}
+
+.home-top-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(330px, 1.1fr);
+  align-items: start;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: none;
+  margin: 0.35rem 0 0;
 }
 
 .home-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 0.85rem;
   align-items: stretch;
+  margin-top: 0.6rem;
 }
 
 .home-card {
@@ -111,15 +130,29 @@ body {
 .page-header h1,
 .event-detail h1 {
   margin: 0;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
   line-height: 1.1;
 }
 
+.hero h1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.16em;
+  justify-content: flex-start;
+  margin-left: 0;
+}
+
+.brand-word {
+  display: inline-block;
+  color: #1e5a8a;
+}
+
 .hero p:last-child {
-  max-width: 34rem;
-  margin: 1rem auto 0;
+  max-width: 44rem;
+  margin: 0.75rem 0 0;
   color: var(--muted);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  text-align: left;
 }
 
 .filter-bar {
@@ -247,6 +280,222 @@ body {
   margin: 0;
 }
 
+.home-calendar {
+  width: 100%;
+  max-width: 620px;
+  margin: 0.8rem 0 0 auto;
+  padding: 0.55rem 0.7rem 0.45rem;
+  border-radius: 14px;
+}
+
+.home-calendar h2 {
+  margin: 0.08rem 0 0.1rem;
+  font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+}
+
+.calendar-month-label {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.calendar-header,
+.calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.2rem;
+}
+
+.calendar-header {
+  margin-top: 0.2rem;
+  margin-bottom: 0.18rem;
+  color: var(--muted);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.05rem;
+}
+
+.calendar-week {
+  min-height: 56px;
+  height: 56px;
+}
+
+.calendar-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calendar-cell-empty {
+  visibility: hidden;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  height: 100%;
+}
+
+.calendar-date-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.calendar-date-link:hover {
+  border-color: rgba(217, 119, 6, 0.55);
+  transform: translateY(-1px);
+}
+
+.calendar-date-link[aria-expanded="true"] {
+  background: rgba(217, 119, 6, 0.18);
+  border-color: rgba(217, 119, 6, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 0 1px rgba(217, 119, 6, 0.12);
+}
+
+.calendar-cell.outside-month {
+  opacity: 0.38;
+}
+
+.calendar-cell.active {
+  background: rgba(217, 119, 6, 0.12);
+  border-color: rgba(217, 119, 6, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 0 1px rgba(217, 119, 6, 0.08);
+}
+
+.calendar-cell.active .calendar-date {
+  color: var(--accent);
+}
+
+.calendar-date {
+  font-weight: 700;
+  font-size: 0.62rem;
+}
+
+.calendar-badge {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  padding: 0.06rem 0.14rem;
+  border-radius: 999px;
+  background: rgba(217, 119, 6, 0.14);
+  color: var(--accent);
+  font-size: 0.34rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.calendar-chevron {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  font-size: 0.52rem;
+  color: var(--accent);
+  opacity: 0.8;
+  transition: transform 0.2s ease;
+}
+
+.calendar-date-link[aria-expanded="true"] .calendar-chevron {
+  transform: rotate(180deg);
+}
+
+.calendar-summary {
+  margin-top: 1.15rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  max-height: 1200px;
+  opacity: 1;
+  transition: max-height 0.3s ease, opacity 0.2s ease, padding-top 0.2s ease;
+}
+
+.calendar-summary[hidden] {
+  display: block !important;
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  border-top-color: transparent;
+}
+
+.calendar-summary-title {
+  margin: 0 0 0.7rem;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.free-day-summary-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.free-day-summary-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  line-height: 1.5;
+}
+
+.free-day-summary-date {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.free-day-summary-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.free-day-summary-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.free-day-summary-items a {
+  color: #0f766e;
+  text-decoration: none;
+}
+
+.free-day-summary-items a:hover {
+  text-decoration: underline;
+}
+
+.free-day-summary-separator {
+  color: var(--muted);
+}
+
+.free-day-list {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
 .site-footer {
   padding: 1.5rem 0 3rem;
   color: var(--muted);
@@ -268,6 +517,10 @@ body {
   .site-header,
   .site-footer {
     width: min(100% - 1.25rem, 1100px);
+  }
+
+  .home-top-layout {
+    grid-template-columns: 1fr;
   }
 
   .hero,

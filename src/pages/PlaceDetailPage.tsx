@@ -1,6 +1,13 @@
 import { Layout } from "../components/Layout";
 import type { PlaceRecord, RelatedEventRecord } from "../db";
 
+function parseFreeDays(freeDays: string): string[] {
+  return freeDays
+    .split(/[;•]/)
+    .map((item) => item.trim().replace(/^[-–]\s*/, ""))
+    .filter((item) => item.length > 0);
+}
+
 export function PlaceDetailPage({
   place,
   relatedEvents,
@@ -8,6 +15,8 @@ export function PlaceDetailPage({
   place: PlaceRecord;
   relatedEvents: RelatedEventRecord[];
 }) {
+  const freeDayItems = parseFreeDays(place.free_days);
+
   return (
     <Layout>
       <article class="event-detail">
@@ -28,7 +37,13 @@ export function PlaceDetailPage({
           </div>
           <div>
             <dt>When free</dt>
-            <dd>{place.free_days}</dd>
+            <dd>
+              <ul class="free-day-list">
+                {freeDayItems.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </dd>
           </div>
           <div>
             <dt>Booking</dt>
@@ -51,9 +66,6 @@ export function PlaceDetailPage({
           </div>
         ) : null}
 
-        <p>
-          <a href="/places">← Back to places</a>
-        </p>
         {place.more_info_url ? (
           <p>
             <a href={place.more_info_url} target="_blank" rel="noreferrer">
@@ -61,6 +73,9 @@ export function PlaceDetailPage({
             </a>
           </p>
         ) : null}
+        <p>
+          <a href="/places">← Back to places</a>
+        </p>
       </article>
     </Layout>
   );

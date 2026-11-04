@@ -1,6 +1,13 @@
 import { Layout } from "../components/Layout";
 import type { PlaceRecord } from "../db";
 
+function parseFreeDays(freeDays: string): string[] {
+  return freeDays
+    .split(/[;•]/)
+    .map((item) => item.trim().replace(/^[-–]\s*/, ""))
+    .filter((item) => item.length > 0);
+}
+
 export function PlaceListPage({
   places,
   filters,
@@ -37,22 +44,23 @@ export function PlaceListPage({
       <p class="filter-summary">Showing: {activeFilter}</p>
 
       <section class="event-list" aria-label="List of free Barcelona places">
-        {places.map((place) => (
-          <article class="event-card" key={place.id}>
-            <p class="event-metadata">
-              <span class="event-tag accent">{place.is_free ? "Free" : "Paid"}</span>
-              <span class="event-tag subtle">
-                {place.requires_appointment ? "Appointment required" : "No appointment needed"}
-              </span>
-            </p>
-            <h2>
-              <a href={`/places/${place.id}`}>{place.name}</a>
-            </h2>
-            <p class="event-location">{place.location}</p>
-            <p>{place.summary}</p>
-            <p class="event-location">When free: {place.free_days}</p>
-          </article>
-        ))}
+        {places.map((place) => {
+          return (
+            <article class="event-card" key={place.id}>
+              <p class="event-metadata">
+                <span class="event-tag accent">{place.is_free ? "Free" : "Paid"}</span>
+                <span class="event-tag subtle">
+                  {place.requires_appointment ? "Appointment required" : "No appointment needed"}
+                </span>
+              </p>
+              <h2>
+                <a href={`/places/${place.id}`}>{place.name}</a>
+              </h2>
+              <p class="event-location">{place.location}</p>
+              <p>{place.summary}</p>
+            </article>
+          );
+        })}
       </section>
     </Layout>
   );
